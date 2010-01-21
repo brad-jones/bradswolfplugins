@@ -39,9 +39,9 @@ class Javascript
 		{
 			// Lets just output the js as is - no compression
 			header('Content-type: text/javascript');
-			foreach ($page->part as $part)
+			foreach ($page->part as $name => $value)
 			{
-				echo $part->content_html."\n\n";
+				echo $page->content($name)."\n\n";
 			}
 		}
 		else
@@ -50,9 +50,9 @@ class Javascript
 			require('JsMin.php');
 			ob_start("ob_gzhandler");
 			header('Content-type: text/javascript');
-			foreach ($page->part as $part)
+			foreach ($page->part as $name => $value)
 			{
-				echo trim(JSMin::minify($part->content_html));
+				echo trim(JSMin::minify($page->content($name)));
 			}
 		}
 		
