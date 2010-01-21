@@ -39,9 +39,9 @@ class Css
 		{
 			// Lets just output the css as is - no compression
 			header('Content-type: text/css');
-			foreach ($page->part as $part)
+			foreach ($page->part as $name => $value)
 			{
-				echo $part->content_html."\n\n";
+				echo $page->content($name)."\n\n";
 			}
 		}
 		else
@@ -50,9 +50,9 @@ class Css
 			require('CssMin.php');
 			ob_start("ob_gzhandler");
 			header('Content-type: text/css');
-			foreach ($page->part as $part)
+			foreach ($page->part as $name => $value)
 			{
-				echo trim(cssmin::minify($part->content_html));
+				echo trim(cssmin::minify($page->content($name)));
 			}
 		}
 		
