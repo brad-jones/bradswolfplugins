@@ -48,7 +48,7 @@ BespinArea.Layouts = function()
 	// Now lets add the editor
 	BespinArea.Editor = new bespin.editor.Component('bespin_editor',
 	{
-		language: "php",
+		language: "html",
 		loadfromdiv: true,
 		set: { strictlines: 'on' }
 	});
@@ -217,10 +217,22 @@ BespinArea.Pages = function()
 				'height':'300px'
 			});
 			
+			// Work out what sort of language to use
+			var language;
+			jQuery("select[id$='page_behavior_id'] option:selected").each(function()
+			{
+				switch (jQuery(this).attr('value'))
+				{
+					case 'Css': language = 'css'; break;
+					case 'Javascript': language = 'js'; break;
+					default: language = 'html';
+				}
+			});
+			
 			// Now lets add the editor
 			BespinArea.Editor[active_tab] = new bespin.editor.Component('bespin_editor_' + active_tab,
 			{
-				language: "php",
+				language: language,
 				loadfromdiv: true,
 				set: { strictlines: 'on' }
 			});
