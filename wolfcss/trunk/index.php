@@ -22,8 +22,8 @@ Plugin::setInfos(array
 	'version'		=> '0.0.1',
 	'licence'		=> 'MIT',
 	'author'		=> 'Brad Jones',
-	'website'		=> 'http://code.google.com/p/wolfcss/',
-	'update_url'	=> 'http://wolfcss.googlecode.com/svn/trunk/version.xml'
+	'website'		=> 'http://code.google.com/p/bradswolfplugins/',
+	'update_url'	=> 'http://bradswolfplugins.googlecode.com/svn/wolfcss/trunk/version.xml'
 ));
 
 // Add in our Behavior / Page Type.
