@@ -14,29 +14,28 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Some basic info about this plugin
-Plugin::setInfos(array
-(
-	'id'			=> 'assetjs',
-	'title'			=> 'Javascript Asset Manager', 
-	'description'	=> 'Provides an Interface to Manage your Js', 
-	'version'		=> '0.0.2',
-	'last_update'	=> '29/01/2010',
-	'licence'		=> 'MIT',
-	'author'		=> 'Brad Jones',
-	'website'		=> 'http://code.google.com/p/bradswolfplugins/',
-	'update_url'	=> 'http://bradswolfplugins.googlecode.com/svn/assetjs/trunk/version.xml',
-	'type'			=> 'both'
-));
+/*
+ * This outputs the side menu for this plugin.
+ * Nothing too special really...
+ */
+?>
 
-// Add our controller
-Plugin::addController('assetjs', 'Javascript');
+<?php /* Add Javascript */ ?>
+<p class="button">
+	<a href="<?php echo URI_PUBLIC; ?>admin/plugin/assetjs/add">
+		<img src="<?php echo URI_PUBLIC; ?>wolf/plugins/assetjs/images/page.png" align="middle" alt="" />
+		Add Javascript
+	</a>
+</p>
 
-// Setup some frontend routes
-Dispatcher::addRoute(array('/js/:any' => '/plugin/assetjs/output/$1'));
-
-// Include our model
-require_once('models/Assetjs.php');
-
-// Include JsMin
-require_once('jsmin.php');
+<?php /* About Info */ ?>
+<div class="box">
+	<h2>Designed and Developed by <a href="mailto:brad@bjc.id.au">Brad Jones</a></h2>
+    <p>
+		v<?php echo Plugin::$plugins_infos['assetjs']->version; ?>,
+		Last Updated: <?php echo Plugin::$plugins_infos['assetjs']->last_update; ?>
+	</p>
+	<p>
+		<a href="<?php echo Plugin::$plugins_infos['assetjs']->website; ?>"><?php echo Plugin::$plugins_infos['assetjs']->website; ?></a>
+	</p>
+</div>

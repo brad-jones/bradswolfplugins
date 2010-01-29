@@ -14,29 +14,16 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Some basic info about this plugin
-Plugin::setInfos(array
-(
-	'id'			=> 'assetjs',
-	'title'			=> 'Javascript Asset Manager', 
-	'description'	=> 'Provides an Interface to Manage your Js', 
-	'version'		=> '0.0.2',
-	'last_update'	=> '29/01/2010',
-	'licence'		=> 'MIT',
-	'author'		=> 'Brad Jones',
-	'website'		=> 'http://code.google.com/p/bradswolfplugins/',
-	'update_url'	=> 'http://bradswolfplugins.googlecode.com/svn/assetjs/trunk/version.xml',
-	'type'			=> 'both'
-));
+// Grab ourselves a db connection
+$db = Record::getConnection();
 
-// Add our controller
-Plugin::addController('assetjs', 'Javascript');
+// Check if the wolfjs table exists
+if (($db->prepare('SELECT 1 FROM '.TABLE_PREFIX.'assetjs')) == true)
+{
+    // It does so lets drop it
+	$db->exec('DROP TABLE '.TABLE_PREFIX.'assetjs');
+    Flash::set('info', 'All Javascript Assets have been Deleted!');
+}
 
-// Setup some frontend routes
-Dispatcher::addRoute(array('/js/:any' => '/plugin/assetjs/output/$1'));
-
-// Include our model
-require_once('models/Assetjs.php');
-
-// Include JsMin
-require_once('jsmin.php');
+Flash::set('success', 'AssetJs UnInstalled');
+exit;
