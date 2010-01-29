@@ -14,17 +14,13 @@
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
-/*
- * NOTE - This plugin uses the jQuery Plugin
- * see: http://github.com/tuupola/frog_jquery_ui
- */
-
 Plugin::setInfos(array
 (
 	'id'			=> 'bespin_area',
 	'title'			=> 'The Mozilla Bespin Editor', 
 	'description'	=> 'Canvas based Syntax Highlighter', 
 	'version'		=> '0.0.3',
+	'last_update'	=> '29/01/2010',
 	'licence'		=> 'MIT',
 	'author'		=> 'Brad Jones',
 	'website'		=> 'http://code.google.com/p/bradswolfplugins/',
