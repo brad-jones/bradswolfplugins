@@ -20,7 +20,7 @@ Plugin::setInfos(array
 	'id'			=> 'assetcss',
 	'title'			=> 'Stylesheet Asset Manager',
 	'description'	=> 'Provides an Interface to Manage your Css',
-	'version'		=> '0.0.2',
+	'version'		=> '0.0.3',
 	'last_update'	=> '29/01/2010',
 	'licence'		=> 'MIT',
 	'author'		=> 'Brad Jones',
