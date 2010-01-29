@@ -279,7 +279,7 @@ class AssetcssController extends PluginController
 		foreach ($assets as $asset_name)
 		{
 			// Find the asset
-			$asset = Assetjs::find(array
+			$asset = Assetcss::find(array
 			(
 				'where' => 'assetcss.name = "'.$asset_name.'"',
 				'limit' => 1
