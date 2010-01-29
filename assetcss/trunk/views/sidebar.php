@@ -14,29 +14,28 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Some basic info about this plugin
-Plugin::setInfos(array
-(
-	'id'			=> 'assetcss',
-	'title'			=> 'Stylesheet Asset Manager',
-	'description'	=> 'Provides an Interface to Manage your Css',
-	'version'		=> '0.0.2',
-	'last_update'	=> '29/01/2010',
-	'licence'		=> 'MIT',
-	'author'		=> 'Brad Jones',
-	'website'		=> 'http://code.google.com/p/bradswolfplugins/',
-	'update_url'	=> 'http://bradswolfplugins.googlecode.com/svn/assetcss/trunk/version.xml',
-	'type'			=> 'both'
-));
+/*
+ * This outputs the side menu for this plugin.
+ * Nothing too special really...
+ */
+?>
 
-// Add our controller
-Plugin::addController('assetcss', 'Stylesheets');
+<?php /* Add Css */ ?>
+<p class="button">
+	<a href="<?php echo URI_PUBLIC; ?>admin/plugin/assetcss/add">
+		<img src="<?php echo URI_PUBLIC; ?>wolf/plugins/assetcss/images/page.png" align="middle" alt="" />
+		Add Stylesheet
+	</a>
+</p>
 
-// Setup some frontend routes
-Dispatcher::addRoute(array('/css/:any' => '/plugin/assetcss/output/$1'));
-
-// Include our model
-require_once('models/Assetcss.php');
-
-// Include JsMin
-require_once('cssmin.php');
+<?php /* About Info */ ?>
+<div class="box">
+	<h2>Designed and Developed by <a href="mailto:brad@bjc.id.au">Brad Jones</a></h2>
+    <p>
+		v<?php echo Plugin::$plugins_infos['assetcss']->version; ?>,
+		Last Updated: <?php echo Plugin::$plugins_infos['assetcss']->last_update; ?>
+	</p>
+	<p>
+		<a href="<?php echo Plugin::$plugins_infos['assetcss']->website; ?>"><?php echo Plugin::$plugins_infos['assetcss']->website; ?></a>
+	</p>
+</div>

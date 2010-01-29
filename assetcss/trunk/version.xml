@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <frog-plugins>
 	<frog-plugin>
-		<id>wolfcss</id>
-		<version>0.0.1</version>
+		<id>assetcss</id>
+		<version>0.0.2</version>
 		<status>alpha</status>
 	</frog-plugin>
 </frog-plugins>
