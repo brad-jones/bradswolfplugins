@@ -31,7 +31,7 @@
 <?php /* About Info */ ?>
 <div class="box">
 	<h2>Designed and Developed by <a href="mailto:brad@bjc.id.au">Brad Jones</a></h2>
-    <p>
+	<p>
 		v<?php echo Plugin::$plugins_infos['assetcss']->version; ?>,
 		Last Updated: <?php echo Plugin::$plugins_infos['assetcss']->last_update; ?>
 	</p>

@@ -20,9 +20,9 @@ $db = Record::getConnection();
 // Check if the wolfjs table exists
 if (($db->prepare('SELECT 1 FROM '.TABLE_PREFIX.'assetcss')) == true)
 {
-    // It does so lets drop it
+	// It does so lets drop it
 	$db->exec('DROP TABLE '.TABLE_PREFIX.'assetcss');
-    Flash::set('info', 'All Css Assets have been Deleted!');
+	Flash::set('info', 'All Css Assets have been Deleted!');
 }
 
 Flash::set('success', 'AssetCss UnInstalled');

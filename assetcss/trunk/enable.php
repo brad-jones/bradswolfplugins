@@ -20,7 +20,7 @@ $db = Record::getConnection();
 // Check if the wolfjs table exists
 if (($db->prepare('SELECT 1 FROM '.TABLE_PREFIX.'assetcss')) == false)
 {
-    // What db are we using
+	// What db are we using
 	if (strpos(DB_DSN, 'sqlite') !== false)
 	{
 		// We are using Sqlite
@@ -40,7 +40,7 @@ if (($db->prepare('SELECT 1 FROM '.TABLE_PREFIX.'assetcss')) == false)
 			)
 		');
 		$db->exec('CREATE UNIQUE INDEX assetcss_name ON assetcss (name)');
-        Flash::set('info', 'Created the `assetcss` table in SqLite.');
+		Flash::set('info', 'Created the `assetcss` table in SqLite.');
 	}
 	else
 	{
@@ -52,7 +52,7 @@ if (($db->prepare('SELECT 1 FROM '.TABLE_PREFIX.'assetcss')) == false)
 				id int(11) unsigned NOT NULL auto_increment,
 				name varchar(100) NOT NULL default "",
 				content text,
-                content_compressed text,
+				content_compressed text,
 				created_on datetime default NULL,
 				updated_on datetime default NULL,
 				created_by_id int(11) default NULL,
@@ -62,7 +62,7 @@ if (($db->prepare('SELECT 1 FROM '.TABLE_PREFIX.'assetcss')) == false)
 				UNIQUE KEY name (name)
 			) ENGINE=MyISAM  DEFAULT CHARSET=utf8
 		');
-        Flash::set('info', 'Created the `assetcss` table in MySQL.');
+		Flash::set('info', 'Created the `assetcss` table in MySQL.');
 	}
 }
 else
@@ -71,7 +71,7 @@ else
 	 * This is where we could place any upgrade code.
 	 * Do nothing for now...
 	 */
-    Flash::set('info', 'The `assetcss` table already exists - nothing to do.');
+	Flash::set('info', 'The `assetcss` table already exists - nothing to do.');
 }
 
 Flash::set('success', 'AssetCss Installed');

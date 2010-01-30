@@ -1,13 +1,13 @@
 <?php
 ////////////////////////////////////////////////////////////////////////////////
-//           _____                        __   _________
-//          /  _  \   ______ ______ _____/  |_ \_   ___ \  ______ ______
-//         /  /_\  \ /  ___//  ___// __ \   __\/    \  \/ /  ___//  ___/
-//        /    |    \\___ \ \___ \\  ___/|  |  \     \____\___ \ \___ \
-//        \____|__  /____  >____  >\___  >__|   \______  /____  >____  >
-//               \/     \/     \/     \/              \/     \/     \/
+//		   _____						__   _________
+//		  /  _  \   ______ ______ _____/  |_ \_   ___ \  ______ ______
+//		 /  /_\  \ /  ___//  ___// __ \   __\/	\  \/ /  ___//  ___/
+//		/	|	\\___ \ \___ \\  ___/|  |  \	 \____\___ \ \___ \
+//		\____|__  /____  >____  >\___  >__|   \______  /____  >____  >
+//			   \/	 \/	 \/	 \/			  \/	 \/	 \/
 // =============================================================================
-//         Designed and Developed by Brad Jones  <brad @="bjc.id.au" />
+//		 Designed and Developed by Brad Jones  <brad @="bjc.id.au" />
 // =============================================================================
 //
 // >>> $Id$
@@ -49,8 +49,8 @@ class AssetcssController extends PluginController
 			$this->setLayout('backend');
 			$this->assignToLayout('sidebar', new View('../../plugins/assetcss/views/sidebar'));
 		}
-    }
-
+	}
+	
 	/**
 	 * Method: index
 	 * =========================================================================
@@ -64,13 +64,13 @@ class AssetcssController extends PluginController
 	 * -------------------------------------------------------------------------
 	 * void
 	 */
-    public function index()
+	public function index()
 	{
 		$this->display('assetcss/views/list', array(
-            'assets' => Record::findAllFrom('Assetcss', '1=1 ORDER BY position')
-        ));
-    }
-
+			'assets' => Record::findAllFrom('Assetcss', '1=1 ORDER BY position')
+		));
+	}
+	
 	/**
 	 * Method: add
 	 * =========================================================================
@@ -84,18 +84,18 @@ class AssetcssController extends PluginController
 	 * -------------------------------------------------------------------------
 	 * void
 	 */
-    public function add()
+	public function add()
 	{
-        // Check if trying to save
-        if (get_request_method() == 'POST')
-        {
+		// Check if trying to save
+		if (get_request_method() == 'POST')
+		{
 			// Grab the POST Data
 			$data = $_POST['asset'];
 			Flash::set('post_data', (object) $data);
-
+			
 			// Create a new asset object
 			$asset = new Assetcss($data);
-
+			
 			// Save the asset
 			if (!$asset->save())
 			{
@@ -107,28 +107,28 @@ class AssetcssController extends PluginController
 				Flash::set('success', __('Asset has been added!'));
 				Observer::notify('assetcss_after_add', $asset);
 			}
-
+			
 			// Save and quit or save and continue editing?
 			if (isset($_POST['commit'])) redirect(get_url('plugin/assetcss'));
 			else redirect(get_url('plugin/assetcss/edit/'.$asset->id));
-        }
-        else
-        {
+		}
+		else
+		{
 			// Check if user have already enter something
 			$asset = Flash::get('post_data');
-
+			
 			// Otherwise create a new asset
 			if (empty($asset)) $asset = new Assetcss();
-
+			
 			// Output the edit page
 			$this->display('assetcss/views/edit', array
 			(
 				'action'  => 'add',
 				'asset' => $asset
 			));
-        }
-    }
-
+		}
+	}
+	
 	/**
 	 * Method: edit
 	 * =========================================================================
@@ -145,19 +145,19 @@ class AssetcssController extends PluginController
 	public function edit($id)
 	{
 		// Grab the asset
-		if (!$asset = Assetjs::findById($id))
+		if (!$asset = Assetcss::findById($id))
 		{
 			Flash::set('error', __('Asset not found!'));
 			redirect(get_url('plugin/assetcss'));
 		}
-
+		
 		// Check if trying to save
 		if (get_request_method() == 'POST')
 		{
 			// Get the new asset data
 			$data = $_POST['asset']; $data['id'] = $id;
 			$asset = new Assetcss($data);
-
+			
 			// Save the asset
 			if ( ! $asset->save())
 			{
@@ -169,7 +169,7 @@ class AssetcssController extends PluginController
 				Flash::set('success', __('Asset :name has been saved!', array(':name'=>$asset->name)));
 				Observer::notify('assetcss_after_edit', $asset);
 			}
-
+			
 			// Save and quit or Save and continue editing?
 			if (isset($_POST['commit'])) redirect(get_url('plugin/assetcss'));
 			else redirect(get_url('plugin/assetscs/edit/'.$id));
@@ -182,8 +182,8 @@ class AssetcssController extends PluginController
 				'asset' => $asset
 			));
 		}
-    }
-
+	}
+	
 	/**
 	 * Method: delete
 	 * =========================================================================
@@ -197,7 +197,7 @@ class AssetcssController extends PluginController
 	 * -------------------------------------------------------------------------
 	 * void
 	 */
-    public function delete($id)
+	public function delete($id)
 	{
 		// Find the asset to delete
 		if ($asset = Record::findByIdFrom('Assetcss', $id))
@@ -217,10 +217,10 @@ class AssetcssController extends PluginController
 		{
 			Flash::set('error', __('Asset not found!'));
 		}
-
+		
 		// Refresh the List
 		redirect(get_url('plugin/assetcss'));
-    }
+	}
 	
 	/**
 	 * Method: reorder
@@ -237,16 +237,16 @@ class AssetcssController extends PluginController
 	 */
 	public function reorder()
 	{
-        parse_str($_POST['data']);
-
-        foreach ($assets as $position => $asset_id)
+		parse_str($_POST['data']);
+		
+		foreach ($assets as $position => $asset_id)
 		{
-            $asset = Record::findByIdFrom('Assetcss', $asset_id);
-            $asset->position = (int) $position + 1;
-            $asset->save();
-        }
-    }
-
+			$asset = Record::findByIdFrom('Assetcss', $asset_id);
+			$asset->position = (int) $position + 1;
+			$asset->save();
+		}
+	}
+	
 	/**
 	 * Method: output
 	 * =========================================================================
@@ -270,11 +270,11 @@ class AssetcssController extends PluginController
 	{
 		// This is what we will output
 		$output = '';
-
+		
 		// Do we have a list
 		if (strpos($name, ',')) $assets = explode(',', $name);
 		else $assets = array($name);
-
+		
 		// Loop through the assets
 		foreach ($assets as $asset_name)
 		{
@@ -284,7 +284,7 @@ class AssetcssController extends PluginController
 				'where' => 'assetcss.name = "'.$asset_name.'"',
 				'limit' => 1
 			));
-
+			
 			// Make sure we got an asset
 			if ($asset)
 			{
@@ -303,13 +303,13 @@ class AssetcssController extends PluginController
 				}
 			}
 		}
-
+		
 		// Gzipped?
 		if (!DEBUG) ob_start("ob_gzhandler");
 		
 		// Output it
 		header('Content-type: text/css;'); echo $output;
-
+		
 		// We don't need to go any further
 		exit;
 	}
