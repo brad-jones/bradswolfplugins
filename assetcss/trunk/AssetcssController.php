@@ -172,7 +172,7 @@ class AssetcssController extends PluginController
 			
 			// Save and quit or Save and continue editing?
 			if (isset($_POST['commit'])) redirect(get_url('plugin/assetcss'));
-			else redirect(get_url('plugin/assetscs/edit/'.$id));
+			else redirect(get_url('plugin/assetcss/edit/'.$id));
 		}
 		else
 		{
